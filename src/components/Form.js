@@ -10,6 +10,7 @@ function Form() {
           onSearchInputChange={(e) => {
             console.log(e.target.value);
           }}
+          label="Zoeken"
         />
       </form>
     </section>

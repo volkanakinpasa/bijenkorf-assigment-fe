@@ -4,7 +4,7 @@ import Button from './Button';
 import SearchBoxIcon from './SearchBoxIcon';
 
 function SearchBox(props) {
-  const { onSearchInputChange } = props;
+  const { onSearchInputChange, label } = props;
 
   return (
     <div className="input-container relative">
@@ -12,15 +12,15 @@ function SearchBox(props) {
         name="search"
         type="search"
         className="search"
-        placeholder="Zooken"
+        placeholder={label}
         autoComplete="off"
         onChange={onSearchInputChange}
         data-testid="search"
       />
 
       <Button
-        label="Zooken"
-        icon={<SearchBoxIcon />}
+        label={label}
+        icon={<SearchBoxIcon alt={label} />}
         type="submit"
         onClick={(e) => {
           e.preventDefault();

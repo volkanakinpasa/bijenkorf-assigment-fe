@@ -17,14 +17,15 @@ exports[`Form tests creates a snapshot 1`] = `
           class="search"
           data-testid="search"
           name="search"
-          placeholder="Zooken"
+          placeholder="Zoeken"
           type="search"
         />
         <button
-          aria-label="Zooken"
+          aria-label="Zoeken"
           type="submit"
         >
           <img
+            alt="Zoeken"
             src="search-icon.svg"
           />
         </button>

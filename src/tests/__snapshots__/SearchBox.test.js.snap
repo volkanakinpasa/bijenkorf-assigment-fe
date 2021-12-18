@@ -10,11 +10,9 @@ exports[`SearchBox tests creates a snapshot 1`] = `
       class="search"
       data-testid="search"
       name="search"
-      placeholder="Zooken"
       type="search"
     />
     <button
-      aria-label="Zooken"
       type="submit"
     >
       <img
