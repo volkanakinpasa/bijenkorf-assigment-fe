@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<svg
+    xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsCc="http://web.resource.org/cc/"
+    xmlnsDc="http://purl.org/dc/elements/1.1/"
+    xmlnsSvg="http://www.w3.org/2000/svg"
+    xmlnsInkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlnsSodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlnsNs1="http://sozi.baierouge.fr"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 184 161"
+  >
+  <g
+      id="imagebot_2"
+      label="Layer 1"
+    >
+    <g
+        id="imagebot_3"
+        label="Layer 1"
+        transform="translate(174.67 152.52) matrix(.90792 0 0 .90792 -427.96 -463.36)"
+      >
+      <g
+          id="imagebot_4"
+          stroke="#808080"
+          stroke-linecap="round"
+          fill="none"
+        >
+        <path
+            id="imagebot_6"
+            stroke-linejoin="round"
+            stroke-width="10.63"
+            d="m443.16 414.45c0 36.1-29.27 65.36-65.36 65.36-36.1 0-65.36-29.26-65.36-65.36s29.26-65.36 65.36-65.36c36.09 0 65.36 29.26 65.36 65.36z"
+        />
+        <path
+            id="imagebot_5"
+            stroke-width="21.26"
+            d="m428.3 464.45l42.43 38.39"
+        />
+      </g
+      >
+    </g
+    >
+    <title
+      >Layer 1</title
+    >
+  </g
+  >
+ 
+</svg>

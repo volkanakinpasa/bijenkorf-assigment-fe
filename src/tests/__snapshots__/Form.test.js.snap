@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form tests creates a snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="mx-auto form-section"
+  >
+    <form
+      class="w-full"
+      role="search"
+    >
+      <div
+        class="input-container relative"
+      >
+        <input
+          autocomplete="off"
+          class="search"
+          data-testid="search"
+          name="search"
+          placeholder="Zooken"
+          type="search"
+        />
+        <button
+          aria-label="Zooken"
+          type="submit"
+        >
+          <img
+            src="search-icon.svg"
+          />
+        </button>
+      </div>
+    </form>
+  </section>
+</DocumentFragment>
+`;
