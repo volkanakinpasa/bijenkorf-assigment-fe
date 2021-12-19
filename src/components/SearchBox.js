@@ -4,10 +4,16 @@ import Button from './Button';
 import Icon from './Icon';
 import { useState } from 'react';
 
-function SearchBox(props) {
-  const { onInputChange, searchLabel, clearLabel } = props;
-
-  const [onFocus, setOnFocus] = useState(false);
+function SearchBox({
+  onInputChange,
+  searchLabel,
+  clearLabel,
+  autoComplete,
+  onFocus,
+  onBlur,
+  onKeyDown,
+}) {
+  const [focused, setFocused] = useState(false);
   const [value, setValue] = useState('');
 
   const onChange = (e) => {
@@ -15,20 +21,31 @@ function SearchBox(props) {
     onInputChange(e);
   };
 
+  const handleOnFocus = (e) => {
+    setFocused(true);
+    if (onFocus) onFocus(e);
+  };
+
+  const handleOnBlur = (e) => {
+    setFocused(false);
+    if (onBlur) onBlur(e);
+  };
+
   return (
     <div
       data-testid="input-container"
-      onFocus={() => setOnFocus(true)}
-      onBlur={() => setOnFocus(false)}
-      className={`input-container relative ${onFocus ? 'focused' : ''}`}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      className={`input-container relative ${focused ? 'focused' : ''}`}
     >
       <input
         name="search"
         type="search"
         className="search"
         placeholder={searchLabel}
-        autoComplete="off"
+        autoComplete={autoComplete}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         data-testid="input"
         value={value}
       />
