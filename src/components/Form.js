@@ -7,10 +7,11 @@ function Form() {
     <section className="mx-auto form-section">
       <form className="w-full" role="search">
         <SearchBox
-          onSearchInputChange={(e) => {
+          onInputChange={(e) => {
             console.log(e.target.value);
           }}
-          label="Zoeken"
+          searchLabel="Zoeken"
+          clearLabel="Clear"
         />
       </form>
     </section>

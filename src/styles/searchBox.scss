@@ -1,5 +1,9 @@
 .input-container {
   border: 1px solid #e5e5e5;
+
+  &.focused {
+    border: 1px solid #000;
+  }
 }
 
 .form-section {
@@ -26,6 +30,33 @@
       right: 0;
       top: 0;
       bottom: 0;
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img,
+      svg {
+        max-height: 100%;
+        max-width: 100%;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    button.button-clear {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      outline: none;
+      color: #3e3a37;
+      right: 48px;
+      top: 0;
       width: 40px;
       height: 40px;
 

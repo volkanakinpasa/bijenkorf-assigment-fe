@@ -1,11 +1,7 @@
 function Button(props) {
-  const { label, icon, type, onClick } = props;
+  const { icon, buttonProps } = props;
 
-  return (
-    <button type={type} aria-label={label} onClick={onClick}>
-      {icon}
-    </button>
-  );
+  return <button {...buttonProps}>{icon}</button>;
 }
 
 export default Button;
