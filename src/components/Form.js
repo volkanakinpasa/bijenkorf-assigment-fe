@@ -1,9 +1,10 @@
 import '../styles/form.scss';
 
+import { useEffect, useState } from 'react';
+
 import Autocomplete from './Autocomplete';
 import SearchBox from './SearchBox';
 import { get } from '../services/api';
-import { useState } from 'react';
 
 function Form({ characters = 2 }) {
   const [list, setList] = useState(null);
@@ -11,19 +12,26 @@ function Form({ characters = 2 }) {
 
   const onInputChange = async (e) => {
     setSearchQuery(e.target.value);
-
-    try {
-      if (e.target.value.length > characters) {
-        //AbortController
-        const result = await get(e.target.value);
-        if (result && result.suggestions && result.suggestions.length > 0)
-          setList(result.suggestions);
-        else setList([]);
-      } else setList([]);
-    } catch (error) {
-      console.error(`Error: ${error.message}`);
-    }
   };
+
+  const search = async () => {
+    if (searchQuery && searchQuery.length > characters) {
+      try {
+        //AbortController
+
+        const result = await get(searchQuery);
+        if (result && result.suggestions && result.suggestions.length > 0) {
+          setList(result.suggestions);
+        } else setList([]);
+      } catch (error) {
+        console.error(`Error: ${error.message}`);
+      }
+    } else setList([]);
+  };
+
+  useEffect(() => {
+    search();
+  }, [searchQuery]);
 
   return (
     <section className="mx-auto form-section">

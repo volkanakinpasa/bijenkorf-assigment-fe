@@ -42,7 +42,6 @@ function Autocomplete(props) {
   return (
     <div className="relative">
       {renderSearchBox({ onBlur, onKeyDown })}
-
       {list && list.length > 0 && (
         <ul role="listbox" className="auto-complete-result">
           {list.map((item, index) => {
