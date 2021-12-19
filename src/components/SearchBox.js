@@ -1,8 +1,9 @@
 import '../styles/searchBox.scss';
 
+import React, { useState } from 'react';
+
 import Button from './Button';
 import Icon from './Icon';
-import { useState } from 'react';
 
 function SearchBox({
   onInputChange,
@@ -58,13 +59,13 @@ function SearchBox({
             type: 'button',
             onClick: (e) => {
               setValue('');
-              console.log(e);
             },
             'aria-label': clearLabel,
             className: 'button-clear',
           }}
         ></Button>
       )}
+
       <Button
         icon={<Icon src="search-icon.svg" alt={searchLabel} />}
         buttonProps={{
@@ -72,7 +73,6 @@ function SearchBox({
           type: 'submit',
           onClick: (e) => {
             e.preventDefault();
-            console.log(e);
           },
           'aria-label': searchLabel,
         }}

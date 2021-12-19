@@ -10,16 +10,9 @@ function Autocomplete(props) {
 
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
-  const [showList, setShowList] = useState(true);
-
-  const onFocus = (e) => {
-    // not implemented
-    setShowList(true);
-  };
 
   const onBlur = (e) => {
     setSelectedItemIndex(null);
-    setShowList(false);
   };
 
   const ArrowDown = (e) => {
@@ -48,13 +41,15 @@ function Autocomplete(props) {
 
   return (
     <div className="relative">
-      {renderSearchBox({ onFocus, onBlur, onKeyDown })}
+      {renderSearchBox({ onBlur, onKeyDown })}
 
-      {showList && list && list.length > 0 && (
+      {list && list.length > 0 && (
         <ul role="listbox" className="auto-complete-result">
           {list.map((item, index) => {
             return (
               <li
+                role="option"
+                aria-selected={selectedItemIndex === index}
                 key={`${item.searchterm}-${item.nrResults}`}
                 className={`auto-complete-result-item ${
                   selectedItemIndex === index ? 'selected-item' : ''

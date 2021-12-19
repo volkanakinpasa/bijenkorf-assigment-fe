@@ -2,30 +2,27 @@ import '../styles/form.scss';
 
 import Autocomplete from './Autocomplete';
 import SearchBox from './SearchBox';
+import { get } from '../services/api';
 import { useState } from 'react';
 
 function Form({ characters = 2 }) {
   const [list, setList] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const onInputChange = (e) => {
+  const onInputChange = async (e) => {
     setSearchQuery(e.target.value);
-    if (e.target.value.length > characters) {
-      setList([
-        {
-          searchterm: 'calvin klein trui heren rood',
-          nrResults: 40,
-        },
-        {
-          searchterm: 'calvin klein trui heren blauw',
-          nrResults: 50,
-        },
-        {
-          searchterm: 'calvin klein trui heren oranje',
-          nrResults: 42,
-        },
-      ]);
-    } else setList([]);
+
+    try {
+      if (e.target.value.length > characters) {
+        //AbortController
+        const result = await get(e.target.value);
+        if (result && result.suggestions && result.suggestions.length > 0)
+          setList(result.suggestions);
+        else setList([]);
+      } else setList([]);
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+    }
   };
 
   return (
@@ -33,7 +30,6 @@ function Form({ characters = 2 }) {
       <form className="w-full" role="search">
         <Autocomplete
           searchQuery={searchQuery}
-          enableHighlight={true}
           renderSearchBox={(params) => (
             <SearchBox
               {...params}
@@ -44,7 +40,6 @@ function Form({ characters = 2 }) {
             />
           )}
           list={list}
-          maxLimit={5}
         />
       </form>
     </section>
