@@ -6,7 +6,10 @@
     opacity: 1;
   }
 }
-
+mark {
+  background: none;
+  color: none;
+}
 ul.auto-complete-result {
   display: block;
   background: #fff;

@@ -1,7 +1,7 @@
 import '../styles/autocomplete.scss';
 
 import AutocompleteItem from './AutocompleteItem';
-import { highlightPattern } from '../helpers';
+import Highlighter from 'react-highlight-words';
 import { useState } from 'react';
 
 function Autocomplete(props) {
@@ -57,9 +57,12 @@ function Autocomplete(props) {
                 onMouseLeave={() => setHoveredItemIndex(null)}
               >
                 <AutocompleteItem>
-                  {highlightPattern(`${item.searchterm}`, searchQuery)}{' '}
-                  {/* this two part can be in hoc */}
-                  <span className="highlighted">({item.nrResults})</span>
+                  <Highlighter
+                    highlightClassName="highlighted"
+                    searchWords={[searchQuery, `\(${item.nrResults}\)`]}
+                    autoEscape={true}
+                    textToHighlight={`${item.searchterm} (${item.nrResults})`}
+                  />
                 </AutocompleteItem>
               </li>
             );
