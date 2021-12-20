@@ -6,7 +6,8 @@
     "canned": "^0.3.13",
     "concurrently": "^6.2.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-highlight-words": "^0.17.0"
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"canned -p 5000 ./api/\"",
