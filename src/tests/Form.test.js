@@ -3,7 +3,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import Form from '../components/Form';
 
 jest.mock('../services/api', () => ({
-  get: (query) =>
+  get: () =>
     new Promise((res, rej) => {
       res({
         search: 'default',
