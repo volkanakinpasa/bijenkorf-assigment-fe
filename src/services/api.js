@@ -1,7 +1,8 @@
+import { API_URL } from '../helpers/constants';
+
 const get = async (query) => {
   try {
-    //move url into constant or process.env.API
-    const rawResponse = await fetch(`http://localhost:3000/search?q=${query}`, {
+    const rawResponse = await fetch(`${API_URL}${query}`, {
       method: 'GET',
     });
     return await rawResponse.json();

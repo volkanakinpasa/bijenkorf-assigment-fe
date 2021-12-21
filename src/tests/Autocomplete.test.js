@@ -1,83 +1,70 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 
 import Autocomplete from '../components/Autocomplete';
 import SearchBox from '../components/SearchBox';
 
-const list = [
-  {
-    searchterm: 'calvin klein trui heren rood',
-    nrResults: 40,
-  },
-  {
-    searchterm: 'calvin klein trui heren blauw',
-    nrResults: 50,
-  },
-  {
-    searchterm: 'calvin klein trui heren oranje',
-    nrResults: 42,
-  },
-];
-
 describe('Autocomplete tests', () => {
-  it('should list 3 items', () => {
-    const props = {
+  let list;
+  let props;
+
+  beforeEach(() => {
+    list = [
+      {
+        searchterm: 'calvin klein trui heren rood',
+        nrResults: 40,
+      },
+      {
+        searchterm: 'calvin klein trui heren blauw',
+        nrResults: 50,
+      },
+      {
+        searchterm: 'calvin klein trui heren oranje',
+        nrResults: 42,
+      },
+    ];
+
+    props = {
       searchQuery: 'trui',
       clearLabel: 'Clear',
-      renderSearchBox: (params) => {
+      renderSearchBox: (params) => (
         <SearchBox
           {...params}
           onInputChange={() => {}}
           searchLabel="Zoeken"
           clearLabel="Clear"
           autoComplete="off"
-        />;
-      },
+        />
+      ),
       list,
     };
+  });
 
+  it('should list 3 items', () => {
     const { queryByRole, queryAllByRole } = render(<Autocomplete {...props} />);
-    const listbox = queryByRole('listbox');
+    const listBox = queryByRole('listbox');
 
-    expect(listbox).toBeInTheDocument();
+    expect(listBox).toBeInTheDocument();
     expect(queryAllByRole('option')).toHaveLength(props.list.length);
   });
 
-  //STUCK! NEED TO onKeyDown IN AUTOCOMPLETE.JS FILE
   it('should select the first one when key arrow down on input', async () => {
-    const autoCompleteBoxProps = {
-      searchQuery: 'trui',
-      clearLabel: 'Clear',
-      list,
-
-      renderSearchBox: (params) => {
-        <SearchBox
-          onBlur={params.onBlur}
-          onKeyDown={params.onKeyDown}
-          onInputChange={() => {}}
-          searchLabel="Zoeken"
-          clearLabel="Clear"
-          autoComplete="off"
-        />;
-      },
-    };
-
-    const searchBoxProps = {
-      onKeyDown: (e) => {
-        console.log('searchBoxProps on key down', e.key);
-      },
-    };
-
-    const { getByTestId } = render(<SearchBox {...searchBoxProps} />);
-
-    const { queryByRole, queryAllByRole } = render(
-      <Autocomplete {...autoCompleteBoxProps} />
+    const { getByTestId, queryByRole, queryAllByRole } = render(
+      <Autocomplete {...props} />
     );
 
-    await waitFor(() => {
-      const input = getByTestId('input');
-      fireEvent.keyDown(input, { key: 'ArrowDown' });
+    const input = getByTestId('input');
 
-      screen.debug();
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    await waitFor(() => {
+      const listBox = queryByRole('listbox');
+
+      expect(listBox).toBeInTheDocument();
+      const options = queryAllByRole('option');
+      expect(options).toHaveLength(list.length);
+      expect(options).toHaveLength(list.length);
+
+      expect(options[0].classList.contains('selected-item')).toBe(true);
     });
   });
 });

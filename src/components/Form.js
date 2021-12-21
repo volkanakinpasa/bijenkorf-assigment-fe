@@ -15,10 +15,9 @@ function Form({ characters = 2 }) {
   };
 
   const search = async () => {
-    if (searchQuery && searchQuery.length > characters) {
+    if (searchQuery && searchQuery.length >= characters) {
       try {
         //AbortController
-
         const result = await get(searchQuery);
         if (result && result.suggestions && result.suggestions.length > 0) {
           setList(result.suggestions);
