@@ -1,9 +1,13 @@
 import React from 'react';
-
+import classNames from 'classnames';
 function Button(props) {
-  const { icon, buttonProps } = props;
+  const { icon, className, buttonProps } = props;
 
-  return <button {...buttonProps}>{icon}</button>;
+  return (
+    <button className={classNames('btn', className)} {...buttonProps}>
+      {icon}
+    </button>
+  );
 }
 
-export default Button;
+export default React.memo(Button);

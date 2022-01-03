@@ -1,4 +1,4 @@
-import '../styles/searchBox.scss';
+import '../styles/components/searchBox.scss';
 
 import React, { useState } from 'react';
 
@@ -15,11 +15,11 @@ function SearchBox({
   onKeyDown,
 }) {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-    onInputChange(e);
+  const onChange = (value) => {
+    setSearchQuery(value);
+    onInputChange(value);
   };
 
   const handleOnFocus = (e) => {
@@ -45,24 +45,24 @@ function SearchBox({
         className="search"
         placeholder={searchLabel}
         autoComplete={autoComplete}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         onKeyDown={onKeyDown}
         data-testid="input"
-        value={value}
+        value={searchQuery}
       />
 
-      {value.length > 0 && (
+      {searchQuery && searchQuery.length > 0 && (
         <Button
           icon={<Icon src="clear-icon.svg" alt={clearLabel} />}
           buttonProps={{
             name: 'clear',
             type: 'button',
             onClick: (e) => {
-              setValue('');
+              onChange('');
             },
             'aria-label': clearLabel,
-            className: 'button-clear',
           }}
+          className="button-clear"
         ></Button>
       )}
 
@@ -81,4 +81,4 @@ function SearchBox({
   );
 }
 
-export default SearchBox;
+export default React.memo(SearchBox);

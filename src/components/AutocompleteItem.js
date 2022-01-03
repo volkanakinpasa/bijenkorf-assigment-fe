@@ -1,4 +1,4 @@
-import '../styles/searchBox.scss';
+import '../styles/components/searchBox.scss';
 
 function AutocompleteItem(props) {
   const { children } = props;

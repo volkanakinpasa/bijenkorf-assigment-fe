@@ -1,11 +1,10 @@
-import '../styles/autocomplete.scss';
+import '../styles/components/autocomplete.scss';
 
 import AutocompleteItem from './AutocompleteItem';
 import Highlighter from 'react-highlight-words';
 import { useState } from 'react';
 
 function Autocomplete(props) {
-  //todo: add max limit
   const { searchQuery, renderSearchBox, list } = props;
 
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -20,9 +19,9 @@ function Autocomplete(props) {
     if (!list) return;
 
     setSelectedItemIndex((item) => {
-      const result =
-        item === null ? 0 : item >= list.length - 1 ? item : item + 1;
-      return result;
+      if (item === null) return 0;
+
+      return item >= list.length - 1 ? item : item + 1;
     });
   };
 
@@ -31,7 +30,7 @@ function Autocomplete(props) {
 
     if (!list) return;
 
-    setSelectedItemIndex((item) => (!item ? 0 : --item));
+    setSelectedItemIndex((item) => (item ? item - 1 : 0));
   };
 
   const onKeyDown = (e) => {

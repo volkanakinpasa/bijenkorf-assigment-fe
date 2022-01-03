@@ -1,0 +1,65 @@
+@import '../helpers/variables.scss';
+@import '../helpers/mixins.scss';
+@import '../layout/breakpoints';
+
+.input-container {
+  border: 1px solid $grey-1;
+
+  &.focused {
+    border: 1px solid #000;
+  }
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-section {
+  form {
+    input[type='search'] {
+      color: $grey-9;
+      min-height: 40px;
+      padding: 0 40px 0 15px;
+      display: block;
+      width: 100%;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    button[type='submit'] {
+      @extend .btn;
+      @include location(0, 0, 0);
+      @include width-heigth(40px, 40px);
+
+      img,
+      svg {
+        @include max-width-heigth(100%, 100%);
+        @include width-heigth(16px, 16px);
+      }
+    }
+
+    .button-clear {
+      @extend .btn;
+      @include location(0, 48px);
+      @include width-heigth(40px, 40px);
+      color: $grey-9;
+
+      img,
+      svg {
+        @include max-width-heigth(100%, 100%);
+        @include width-heigth(16px, 16px);
+      }
+    }
+  }
+}

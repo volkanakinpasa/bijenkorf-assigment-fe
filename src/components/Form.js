@@ -1,4 +1,4 @@
-import '../styles/form.scss';
+import '../styles/pages/form.scss';
 
 import { useEffect, useState } from 'react';
 
@@ -10,8 +10,8 @@ function Form({ characters = 2 }) {
   const [list, setList] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const onInputChange = async (e) => {
-    setSearchQuery(e.target.value);
+  const onInputChange = (value) => {
+    setSearchQuery(value);
   };
 
   const search = async () => {

@@ -1,0 +1,16 @@
+@import '../helpers/variables';
+
+@media (min-width: 768px) {
+  .form-section {
+    @include max-width-heigth(400px);
+  }
+}
+
+@media (min-width: 992px) {
+  .form-section {
+    @include max-width-heigth(600px);
+  }
+}
+
+@media (min-width: 1280px) {
+}
